@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Каталог — SEDIA. Мебель и декор</title>
+
+<!-- Шрифты: Fraunces — витринный serif для заголовков и названий товаров, Inter — для остального текста -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section class="catalog">
+  <div class="catalog__container">
+
+    <!-- Заголовок секции -->
+    <header class="catalog__header">
+      <span class="catalog__eyebrow">Коллекция — Лето 2026</span>
+      <h2 class="catalog__title">Предметы, которые остаются</h2>
+      <p class="catalog__description">
+        Шесть вещей из массива дуба, латуни и льна — выбраны за тишину форм
+        и материалы, которые стареют красиво.
+      </p>
+    </header>
+
+    <!-- Сетка карточек товара -->
+    <div class="catalog__grid">
+
+      <article class="product-card">
+        <div class="product-card__media">
+          <img src="https://images.unsplash.com/photo-1617228154841-0b8a2eb64c03?q=80&w=800&auto=format&fit=crop" alt="Кресло Arno из дубового массива" loading="lazy">
+          <span class="product-card__material">Дуб · лён</span>
+        </div>
+        <div class="product-card__body">
+          <span class="product-card__category">Кресла</span>
+          <h3 class="product-card__name">Кресло Arno</h3>
+          <div class="product-card__footer">
+            <span class="product-card__price">64 900 ₽</span>
+            <button class="btn-cart" type="button">В корзину</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-card__media">
+          <img src="https://images.unsplash.com/photo-1512212621149-107ffe572d2f?q=80&w=800&auto=format&fit=crop" alt="Диван Fenna из льна" loading="lazy">
+          <span class="product-card__material">Лён · дуб</span>
+        </div>
+        <div class="product-card__body">
+          <span class="product-card__category">Диваны</span>
+          <h3 class="product-card__name">Диван Fenna</h3>
+          <div class="product-card__footer">
+            <span class="product-card__price">184 000 ₽</span>
+            <button class="btn-cart" type="button">В корзину</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-card__media">
+          <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?q=80&w=800&auto=format&fit=crop" alt="Торшер Solin с латунным основанием" loading="lazy">
+          <span class="product-card__material">Латунь</span>
+        </div>
+        <div class="product-card__body">
+          <span class="product-card__category">Освещение</span>
+          <h3 class="product-card__name">Торшер Solin</h3>
+          <div class="product-card__footer">
+            <span class="product-card__price">32 500 ₽</span>
+            <button class="btn-cart" type="button">В корзину</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-card__media">
+          <img src="https://images.unsplash.com/photo-1758977403403-c51ef509e788?q=80&w=800&auto=format&fit=crop" alt="Обеденный стол Marrow из дуба" loading="lazy">
+          <span class="product-card__material">Дуб</span>
+        </div>
+        <div class="product-card__body">
+          <span class="product-card__category">Столы</span>
+          <h3 class="product-card__name">Стол Marrow</h3>
+          <div class="product-card__footer">
+            <span class="product-card__price">98 000 ₽</span>
+            <button class="btn-cart" type="button">В корзину</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-card__media">
+          <img src="https://images.unsplash.com/photo-1758548157276-00c54fd4a9fa?q=80&w=800&auto=format&fit=crop" alt="Зеркало Halo в латунной раме" loading="lazy">
+          <span class="product-card__material">Латунь · стекло</span>
+        </div>
+        <div class="product-card__body">
+          <span class="product-card__category">Декор</span>
+          <h3 class="product-card__name">Зеркало Halo</h3>
+          <div class="product-card__footer">
+            <span class="product-card__price">27 300 ₽</span>
+            <button class="btn-cart" type="button">В корзину</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-card__media">
+          <img src="https://images.unsplash.com/photo-1581783342308-f792dbdd27c5?q=80&w=800&auto=format&fit=crop" alt="Керамическая ваза Terra" loading="lazy">
+          <span class="product-card__material">Керамика</span>
+        </div>
+        <div class="product-card__body">
+          <span class="product-card__category">Декор</span>
+          <h3 class="product-card__name">Ваза Terra</h3>
+          <div class="product-card__footer">
+            <span class="product-card__price">9 400 ₽</span>
+            <button class="btn-cart" type="button">В корзину</button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

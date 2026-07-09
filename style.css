@@ -1,0 +1,321 @@
+/* =========================================================
+   Токены дизайна
+   ========================================================= */
+:root {
+  --bg: #131110;              /* основной тёплый почти-чёрный фон */
+  --bg-card: #1b1917;         /* фон карточки */
+  --bg-card-hover: #201d1a;   /* фон карточки при наведении */
+  --beige: #cbb48f;           /* акцентный бежевый */
+  --beige-light: #ece3d4;     /* светлый бежевый для акцентного текста */
+  --text: #f3efe7;            /* основной текст на тёмном фоне */
+  --text-muted: #948d80;      /* второстепенный текст */
+  --border: rgba(203, 180, 143, 0.14);
+  --border-hover: rgba(203, 180, 143, 0.45);
+
+  --radius-card: 10px;
+  --radius-chip: 5px;
+
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   Секция каталога
+   ========================================================= */
+.catalog {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  padding: clamp(48px, 7vw, 96px) clamp(20px, 5vw, 32px);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.catalog__container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* --- Заголовок секции --- */
+.catalog__header {
+  max-width: 600px;
+  margin-bottom: clamp(28px, 4vw, 44px);
+}
+
+.catalog__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--beige);
+  margin-bottom: 14px;
+}
+
+.catalog__eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 22px;
+  height: 1px;
+  background: var(--beige);
+}
+
+.catalog__title {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: clamp(30px, 3.8vw, 44px);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  margin: 0 0 12px;
+  color: var(--beige-light);
+}
+
+.catalog__description {
+  font-size: clamp(14px, 1.3vw, 15.5px);
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0;
+  max-width: 44ch;
+}
+
+/* =========================================================
+   Сетка товаров
+   Десктоп: 3 колонки / Планшет: 2 / Мобильный: 1
+   ========================================================= */
+.catalog__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px, 1.8vw, 24px);
+}
+
+@media (max-width: 1024px) {
+  .catalog__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+}
+
+@media (max-width: 640px) {
+  .catalog__grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* =========================================================
+   Карточка товара
+   ========================================================= */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.02) inset,
+              0 10px 24px -18px rgba(0, 0, 0, 0.7);
+  transition: border-color 0.4s var(--ease-premium),
+              background 0.4s var(--ease-premium),
+              box-shadow 0.4s var(--ease-premium),
+              transform 0.4s var(--ease-premium);
+}
+
+/* hover-эффекты только на устройствах с реальным курсором —
+   на тачскрине карточка не "залипает" в наведённом состоянии после тапа */
+@media (hover: hover) and (pointer: fine) {
+  .product-card:hover {
+    border-color: var(--border-hover);
+    background: var(--bg-card-hover);
+    transform: translateY(-5px);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset,
+                0 26px 40px -20px rgba(0, 0, 0, 0.75);
+  }
+
+  .product-card:hover .product-card__media img {
+    transform: scale(1.06);
+    filter: grayscale(0%) brightness(1) contrast(1);
+  }
+
+  .product-card:hover .product-card__name {
+    color: var(--beige);
+  }
+}
+
+/* --- Фото товара ---
+   Реальные предметные фотографии, одинаковая пропорция у всех карточек
+   (aspect-ratio + object-fit: cover гарантируют единый размер),
+   лёгкая тонировка вписывает снимки в тёмную премиальную палитру. */
+.product-card__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 5 / 4;
+  overflow: hidden;
+  background: #0d0c0a;
+  flex-shrink: 0;
+}
+
+.product-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  filter: grayscale(25%) brightness(0.88) contrast(1.04);
+  transition: transform 0.7s var(--ease-premium), filter 0.7s var(--ease-premium);
+}
+
+/* мягкое затемнение снизу — держит подпись материала читаемой
+   поверх любой фотографии, без отдельной плашки с рамкой */
+.product-card__media::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 42%;
+  background: linear-gradient(to top, rgba(10, 9, 7, 0.82), transparent);
+  pointer-events: none;
+}
+
+.product-card__material {
+  position: absolute;
+  left: 14px;
+  bottom: 12px;
+  z-index: 1;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--beige-light);
+}
+
+/* --- Текстовая часть карточки --- */
+.product-card__body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 18px 18px 18px;
+}
+
+.product-card__category {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 7px;
+}
+
+.product-card__name {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.25;
+  color: var(--beige-light);
+  margin: 0 0 16px;
+  transition: color 0.4s var(--ease-premium);
+}
+
+.product-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.product-card__price {
+  font-size: 15.5px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+/* =========================================================
+   Кнопка «В корзину»
+   Заполненный бежевый фон делает её главным акцентом карточки,
+   на hover — затемняется и слегка приподнимается.
+   ========================================================= */
+.btn-cart {
+  flex-shrink: 0;
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #1a1712;
+  background: var(--beige);
+  border: 1px solid var(--beige);
+  border-radius: var(--radius-chip);
+  padding: 11px 18px;
+  min-height: 40px;
+  cursor: pointer;
+  box-shadow: 0 6px 16px -8px rgba(203, 180, 143, 0.35);
+  transition: background 0.3s var(--ease-premium),
+              border-color 0.3s var(--ease-premium),
+              box-shadow 0.3s var(--ease-premium),
+              transform 0.3s var(--ease-premium);
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-cart:hover {
+    background: var(--beige-light);
+    border-color: var(--beige-light);
+    box-shadow: 0 10px 22px -8px rgba(203, 180, 143, 0.5);
+    transform: translateY(-2px);
+  }
+}
+
+.btn-cart:active {
+  background: var(--beige-light);
+  transform: scale(0.97);
+  box-shadow: 0 4px 10px -6px rgba(203, 180, 143, 0.4);
+}
+
+.btn-cart:focus-visible {
+  outline: 2px solid var(--beige-light);
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   Мобильная адаптация (проверено на ширине 375px)
+   Карточки не должны "ломаться": фиксируем пропорции медиа-блока,
+   не даём цене и кнопке переноситься криво
+   ========================================================= */
+@media (max-width: 400px) {
+  .catalog {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .product-card__body {
+    padding: 16px 16px 16px;
+  }
+
+  .product-card__name {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+
+  .product-card__footer {
+    gap: 8px;
+  }
+
+  .btn-cart {
+    padding: 10px 14px;
+    font-size: 12px;
+  }
+
+  .product-card__price {
+    font-size: 14.5px;
+  }
+}
